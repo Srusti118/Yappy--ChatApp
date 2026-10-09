@@ -1,0 +1,136 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Yappy Chat API",
+    "description": "API documentation for the Yappy Chat App backend boilerplate.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "cookieAuth": {
+      "type": "apiKey",
+      "in": "cookie",
+      "name": "jwt"
+    },
+    "bearerAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Enter your Bearer token in the format: Bearer <token>"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Root health check route",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/auth/deleteaccount": {
+      "delete": {
+        "description": "Delete user account",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "password": {
+                  "example": "your_password"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/push/vapid-public-key": {
+      "get": {
+        "description": "Fetch VAPID public key for Web Push",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/push/subscribe": {
+      "post": {
+        "description": "Save device Web Push subscription",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "endpoint": {
+                  "example": "https://fcm.googleapis.com/fcm/send/..."
+                },
+                "keys": {
+                  "example": {
+                    "p256dh": "...",
+                    "auth": "..."
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/api/push/unsubscribe": {
+      "post": {
+        "description": "Unsubscribe device from Web Push",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "endpoint": {
+                  "example": "https://fcm.googleapis.com/fcm/send/..."
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/push/send": {
+      "post": {
+        "description": "Trigger test push notification",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
