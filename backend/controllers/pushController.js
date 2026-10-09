@@ -5,7 +5,7 @@ import AppError from '../utils/AppError.js'
 // Configure web-push with VAPID details from environment variables
 // VAPID keys authenticate our server to the browser push services
 webpush.setVapidDetails(
-  'mailto:mrsandipgodhani@gmail.com', // Admin contact email required by push service providers
+  process.env.VAPID_SUBJECT || 'mailto:admin@yappy.app', // Admin contact email required by push service providers
   process.env.VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 )

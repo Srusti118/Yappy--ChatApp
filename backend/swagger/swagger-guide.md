@@ -126,8 +126,8 @@ Run `npm run swagger` to regenerate `swagger.json`, then restart the server.
 Yes. Add a comment directly above the route in your route file using `swagger-autogen`'s comment syntax:
 
 ```javascript
-// #swagger.description = 'Returns all journals for the logged-in user'
-router.get('/', journalController.getByUser)
+// #swagger.description = 'Returns all messages for the active conversation'
+router.get('/', messageController.getMessages)
 ```
 
 Then re-run `npm run swagger`.
